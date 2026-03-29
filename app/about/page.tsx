@@ -3,6 +3,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "關於",
   description: "關於城市觀察筆記——一個深度旅行紀錄計畫",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

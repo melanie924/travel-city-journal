@@ -22,6 +22,9 @@ export async function generateMetadata({
   return {
     title: `${cityName} — 城市紀錄`,
     description: `關於${cityName}的旅行觀察與紀錄`,
+    alternates: {
+      canonical: `/cities/${city}`,
+    },
   };
 }
 

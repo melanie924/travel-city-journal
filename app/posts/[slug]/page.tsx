@@ -6,6 +6,9 @@ import { remark } from "remark";
 import html from "remark-html";
 import TagBadge from "@/components/TagBadge";
 
+const SITE_URL =
+  process.env.SITE_URL || "https://travel-city-journal.vercel.app";
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -25,12 +28,22 @@ export async function generateMetadata({
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.excerpt,
+    alternates: {
+      canonical: `/posts/${slug}`,
+    },
     openGraph: {
       title: post.frontmatter.title,
       description: post.frontmatter.excerpt,
       type: "article",
       publishedTime: post.frontmatter.date,
       tags: post.frontmatter.tags,
+      url: `${SITE_URL}/posts/${slug}`,
+      siteName: "城市觀察筆記",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.frontmatter.title,
+      description: post.frontmatter.excerpt,
     },
   };
 }
@@ -45,8 +58,58 @@ export default async function PostPage({ params }: PageProps) {
   const contentHtml = processedContent.toString();
   const readingTime = getReadingTime(post.content);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.frontmatter.title,
+    description: post.frontmatter.excerpt,
+    datePublished: post.frontmatter.date,
+    url: `${SITE_URL}/posts/${slug}`,
+    keywords: post.frontmatter.tags,
+    inLanguage: "zh-TW",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "城市觀察筆記",
+      url: SITE_URL,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "首頁",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: post.frontmatter.city,
+        item: `${SITE_URL}/cities/${encodeURIComponent(post.frontmatter.city)}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.frontmatter.title,
+        item: `${SITE_URL}/posts/${slug}`,
+      },
+    ],
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       <Link
         href="/"
         className="mb-8 inline-flex items-center text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
