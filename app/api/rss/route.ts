@@ -24,7 +24,7 @@ export async function GET() {
   <channel>
     <title>城市觀察筆記</title>
     <link>${SITE_URL}</link>
-    <description>人類視角 + AI 洞察的旅行紀錄</description>
+    <description>記錄每座城市的獨特個性與文化觀察</description>
     <language>zh-TW</language>
     <atom:link href="${SITE_URL}/api/rss" rel="self" type="application/rss+xml"/>
     ${rssItems}

@@ -16,14 +16,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "城市觀察筆記 — AI 協作旅行紀錄",
+    default: "城市觀察筆記 — 旅行城市紀錄",
     template: "%s | 城市觀察筆記",
   },
   description:
-    "人類視角 + AI 洞察，記錄每座城市的獨特個性。不只是遊記，更是對城市文化的深度觀察。",
+    "記錄每座城市的獨特個性。不只是遊記，更是對城市文化的深度觀察。",
   openGraph: {
     title: "城市觀察筆記",
-    description: "人類視角 + AI 洞察的旅行紀錄",
+    description: "記錄每座城市的獨特個性與文化觀察",
     type: "website",
     locale: "zh_TW",
   },

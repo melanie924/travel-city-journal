@@ -13,8 +13,7 @@ export default function Home() {
           城市觀察筆記
         </h1>
         <p className="max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-          每座城市都有自己的個性。我們用人類的眼睛觀察，借 AI
-          的視角思考，記錄旅途中那些值得被記住的瞬間與洞察。
+          每座城市都有自己的個性。用心觀察，深度思考，記錄旅途中那些值得被記住的瞬間與洞察。
         </p>
       </section>
 

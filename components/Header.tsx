@@ -9,7 +9,7 @@ export default function Header() {
             城市觀察筆記
           </span>
           <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
-            AI 協作
+            旅行紀錄
           </span>
         </Link>
         <div className="flex items-center gap-6 text-sm">
